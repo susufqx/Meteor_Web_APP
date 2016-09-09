@@ -23,3 +23,7 @@ underscore@1.0.9
 iron:router
 sacha:spin
 shell-server
+stylus
+ian:accounts-ui-bootstrap-3
+npm-bcrypt
+accounts-password
