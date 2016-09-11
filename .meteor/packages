@@ -30,3 +30,5 @@ useraccounts:semantic-ui
 semantic:ui
 accounts-google
 twbs:bootstrap
+softwarerero:accounts-t9n
+useraccounts:iron-routing

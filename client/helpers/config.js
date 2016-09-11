@@ -25,3 +25,4 @@ AccountsTemplates.configure({
     //privacyUrl: 'privacy',
     //termsUrl: 'terms-of-use',
 });
+//T9n.setLanguage('zh_cn');
