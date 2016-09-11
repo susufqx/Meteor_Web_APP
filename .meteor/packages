@@ -16,16 +16,17 @@ standard-minifier-js@1.2.0    # JS minifier run for production mode
 es5-shim                      # ECMAScript 5 compatibility for older browsers.
 ecmascript                    # Enable ECMAScript2015+ syntax in app code
 
-twbs:bootstrap
 underscore@1.0.9
 iron:router
 sacha:spin
 shell-server
 stylus
-ian:accounts-ui-bootstrap-3
 npm-bcrypt
 accounts-password
 check
-semantic:ui
 juliancwirko:postcss
 less
+useraccounts:semantic-ui
+semantic:ui
+accounts-google
+twbs:bootstrap
