@@ -1,0 +1,86 @@
+<template name="myAccounts">
+  <div class="myAccounts">
+    <div class="ui center aligned grid">
+      <div class="column">
+        <h2 class="ui teal image header">
+          <div class="content">
+            {{#if login}}
+              登录您的账户
+            {{/if}}
+            {{#if register}}
+              注册新账户
+            {{/if}}
+            {{#if forgetPwd}}
+              找回密码
+            {{/if}}
+          </div>
+        </h2>
+        <form class="ui large form myAccounts">
+          <div class="ui stacked segment">
+            <!-- Email all parts need it -->
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="user icon"></i>
+                <input type="text" name="email" placeholder="电子邮件地址">
+              </div>
+            </div>
+            <!-- Enter the password , only find the password don't need it -->
+            {{#unless forgetPwd}}
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input type="password" name="password" placeholder="密码">
+              </div>
+            </div>
+            {{/unless}}
+            <!-- Verify the password, just register needs it -->
+            {{#if register}}
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input type="password" name="passwordAgain" placeholder="请再次输入密码">
+              </div>
+            </div>
+            {{/if}}
+            <button type="submit" class="ui fluid large teal submit button">
+              {{#if login}}
+                登录
+              {{/if}}
+              {{#if register}}
+                注册
+              {{/if}}
+              {{#if forgetPwd}}
+                发送邮件
+              {{/if}}
+            </button>
+          </div>
+          <div class="ui error message"></div>
+        </form>
+        <div class="ui message">
+          {{#if login}}
+            还没有账号？ <a href="register">注册</a>
+          {{/if}}
+          {{#if register}}
+            已经拥有账号 <a href="login">登录</a>
+          {{/if}}
+          {{#if forgetPwd}}
+            点击发送邮件，您将收到一封重置密码的邮件
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!-- SignIn -->
+<template name="login">
+  {{> myAccounts state='signIn'}}
+</template>
+<!-- SignUp -->
+<template name="register">
+  {{> myAccounts state='signUp'}}
+</template>
+<!-- forget the password -->
+<template name="forgetPwd">
+  {{> myAccounts state='forgetPwd'}}
+</template>

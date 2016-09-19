@@ -1,0 +1,13 @@
+<template name="layout">
+  <div class="pusher main-layout">
+    {{#unless isHome}}
+      {{> header}}
+      <div id="main" class="main-field">
+        {{> yield}}
+      </div>
+    {{else}}
+      {{> yield}}
+    {{/unless}}
+    {{> footer}}
+  </div>
+</template>

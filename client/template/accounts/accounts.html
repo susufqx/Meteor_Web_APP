@@ -1,13 +1,14 @@
 <template name="userAccount">
-  {{> header}}
+  {{>layout yield="userAccount-main"}}
+</template>
+
+<template name="userAccount-main">
   <div class="main main-userAccount">
     <div class="ui middle aligned center aligned grid userAccount">
       <div class="column">
-
         <h2 class="ui teal image header">
           <img src="" class="image">
         </h2>
-
         <form class="ui large form">
           <div class="ui stacked segment">
             {{> atForm}}

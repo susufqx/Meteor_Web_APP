@@ -1,0 +1,54 @@
+<template name="header">
+  <div class="main-header">
+    <!-- Following Menu -->
+    {{#if isHome}}
+      <div class="ui large top fixed hidden menu following-menu">
+        <div class="ui container">
+          {{> menuList isHome=isHome}}
+        </div>
+      </div>
+    {{/if}}
+    <!-- Menu -->
+    <div class="ui menu {{#if isHome}}secondary large{{else}}fixed{{/if}} main-menu">
+      <div class="ui container">
+        {{#unless isHome}}
+          <a href="{{pathFor 'home'}}" class="item"><i class="large home icon home-icon"></i></a>
+        {{/unless}}
+        {{> menuList isHome=isHome}}
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="menuUser">
+  <div class="ui item dropdown link">
+    <div class="text">
+      {{#if currentUser.username}}
+        {{currentUser.username}}
+      {{else}}
+        用户
+      {{/if}}
+    </div>
+    <i class="dropdown icon"></i>
+    <div class="menu">
+      <a class="item" href="{{pathFor 'profile'}}">设置</a>
+      <a class="item logout">退出</a>
+    </div>
+  </div>
+</template>
+
+<template name="menuList">
+  {{#if currentUser}}
+    <a class="item" href="{{pathFor 'postsList'}}">博客</a>
+    <a class="item">相册</a>
+    <a class="item">讨论</a>
+  {{/if}}
+  <div class="right menu">
+    {{#if currentUser}}
+      {{> menuUser}}
+    {{else}}
+    <a class="item" href="{{pathFor 'register'}}">注  册</a>
+    <a class="item" href="{{pathFor 'login'}}">登  录</a>
+    {{/if}}
+  </div>
+</template>
