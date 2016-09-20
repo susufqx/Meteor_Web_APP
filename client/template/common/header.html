@@ -26,29 +26,29 @@
       {{#if currentUser.username}}
         {{currentUser.username}}
       {{else}}
-        用户
+        USER
       {{/if}}
     </div>
     <i class="dropdown icon"></i>
     <div class="menu">
-      <a class="item" href="{{pathFor 'profile'}}">设置</a>
-      <a class="item logout">退出</a>
+      <a class="item" href="{{pathFor 'profile'}}">Setting</a>
+      <a class="item logout">Logout</a>
     </div>
   </div>
 </template>
 
 <template name="menuList">
   {{#if currentUser}}
-    <a class="item" href="{{pathFor 'postsList'}}">博客</a>
-    <a class="item">相册</a>
-    <a class="item">讨论</a>
+    <a class="item" href="{{pathFor 'postsList'}}">BLOG</a>
+    <a class="item">ALBUM</a>
+    <a class="item">DISCUSS</a>
   {{/if}}
   <div class="right menu">
     {{#if currentUser}}
       {{> menuUser}}
     {{else}}
-    <a class="item" href="{{pathFor 'register'}}">注  册</a>
-    <a class="item" href="{{pathFor 'login'}}">登  录</a>
+    <a class="item" href="{{pathFor 'register'}}">REGISTER</a>
+    <a class="item" href="{{pathFor 'login'}}">LOGIN</a>
     {{/if}}
   </div>
 </template>

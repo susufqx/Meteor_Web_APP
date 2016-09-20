@@ -5,13 +5,13 @@
         <h2 class="ui teal image header">
           <div class="content">
             {{#if login}}
-              登录您的账户
+              Access your account
             {{/if}}
             {{#if register}}
-              注册新账户
+              Register a new account
             {{/if}}
             {{#if forgetPwd}}
-              找回密码
+              Find the password
             {{/if}}
           </div>
         </h2>
@@ -21,7 +21,7 @@
             <div class="field">
               <div class="ui left icon input">
                 <i class="user icon"></i>
-                <input type="text" name="email" placeholder="电子邮件地址">
+                <input type="text" name="email" placeholder="Email...">
               </div>
             </div>
             <!-- Enter the password , only find the password don't need it -->
@@ -29,7 +29,7 @@
             <div class="field">
               <div class="ui left icon input">
                 <i class="lock icon"></i>
-                <input type="password" name="password" placeholder="密码">
+                <input type="password" name="password" placeholder="Password...">
               </div>
             </div>
             {{/unless}}
@@ -38,19 +38,19 @@
             <div class="field">
               <div class="ui left icon input">
                 <i class="lock icon"></i>
-                <input type="password" name="passwordAgain" placeholder="请再次输入密码">
+                <input type="password" name="passwordAgain" placeholder="Password...">
               </div>
             </div>
             {{/if}}
             <button type="submit" class="ui fluid large teal submit button">
               {{#if login}}
-                登录
+                Login
               {{/if}}
               {{#if register}}
-                注册
+                Register
               {{/if}}
               {{#if forgetPwd}}
-                发送邮件
+                Send email
               {{/if}}
             </button>
           </div>
@@ -58,13 +58,13 @@
         </form>
         <div class="ui message">
           {{#if login}}
-            还没有账号？ <a href="register">注册</a>
+            You don't have the account？ <a href="register">Register</a>
           {{/if}}
           {{#if register}}
-            已经拥有账号 <a href="login">登录</a>
+            You have already the account <a href="login">Login</a>
           {{/if}}
           {{#if forgetPwd}}
-            点击发送邮件，您将收到一封重置密码的邮件
+            Click to send the email which can help you reset the password
           {{/if}}
         </div>
       </div>

@@ -1,6 +1,6 @@
 <template name="profile">
   <div class="ui center aligned segment main-profile">
-    <div class="ui header"><h1>您的个人设置<a>其中带 *  号的是必填信息!</a></h1></div>
+    <div class="ui header"><h1>Your personal setting<a>Withe the mark *  is obligatory!</a></h1></div>
     {{>formProfile}}
   </div>
 </template>
@@ -11,70 +11,70 @@
       <div class="ui attached segment form-part">
         <div class="three fields">
           <div class="field">
-            <label>用户名<a>*</a></label>
-            <input type="text" name="username" value="{{currentUser.username}}" placeholder="用户名">
+            <label>Username<a>*</a></label>
+            <input type="text" name="username" value="{{currentUser.username}}" placeholder="Username...">
           </div>
           <div class="field">
-            <label>姓名</label>
-            <input type="text" name="name" value="{{currentUser.profile.name}}" placeholder="姓名">
+            <label>Full-name</label>
+            <input type="text" name="name" value="{{currentUser.profile.name}}" placeholder="Full-name...">
           </div>
           <div class="field">
-            <label>性别</label>
+            <label>Gender</label>
             <div class="ui selection dropdown sexe">
               <input type="hidden" name="gender" value="{{currentUser.profile.gender}}">
               <i class="dropdown icon"></i>
-              <div class="default text">性别</div>
+              <div class="default text">Gender</div>
               <div class="menu">
-                <div class="item" data-value="女">女</div>
-                <div class="item" data-value="男">男</div>
+                <div class="item" data-value="Female">Female</div>
+                <div class="item" data-value="Male">Male</div>
               </div>
             </div>
           </div>
         </div>
         <div class="three fields">
           <div class="field">
-            <label>电子邮件<a>*</a></label>
-            <input type="email" name="email" value="{{currentUser.emails.[0].address}}" placeholder="电子邮件">
+            <label>Email<a>*</a></label>
+            <input type="email" name="email" value="{{currentUser.emails.[0].address}}" placeholder="Email...">
           </div>
           <div class="field">
-            <label>电话号码</label>
-            <input type="text" name="phone" value="{{currentUser.profile.phone}}" placeholder="电话号码">
+            <label>Phone</label>
+            <input type="text" name="phone" value="{{currentUser.profile.phone}}" placeholder="Phone...">
           </div>
           <div class="field">
-            <label>出生日期</label>
+            <label>Birthday</label>
             <div class="ui calendar" id="birth">
               <div class="ui input left icon">
                 <i class="calendar icon"></i>
-                <input type="text"  id="birth-input" name="birth" value="{{currentUser.profile.birthday}}" placeholder="年/月/日"/><br/>
+                <input type="text"  id="birth-input" name="birth" value="{{currentUser.profile.birthday}}" placeholder="Day/Month,Year"/><br/>
               </div>
             </div>
           </div>
         </div>
         <div class="two fields">
           <div class="ui six wide field">
-            <label>职业</label>
+            <label>Career</label>
             <div class="ui selection dropdown career">
               <input type="hidden" name="career" value="{{currentUser.profile.career}}">
               <i class="dropdown icon"></i>
-              <div class="default text">职业</div>
+              <div class="default text">Career</div>
               <div class="menu">
-                <div class="item" data-value="教师">教师</div>
-                <div class="item" data-value="学生">学生</div>
-                <div class="item" data-value="研究人员">研究人员</div>
-                <div class="item" data-value="自由职业">自由职业</div>
-                <div class="item" data-value="工程师">工程师</div>
-                <div class="item" data-value="公务员">公务员</div>
-                <div class="item" data-value="服务生">服务生</div>
-                <div class="item" data-value="销售">销售</div>
-                <div class="item" data-value="设计师">设计师</div>
-                <div class="item" data-value="商人">商人</div>
-                <div class="item" data-value="其他">其他</div>
+                <div class="item" data-value="Teacher">Teacher</div>
+                <div class="item" data-value="Student">Student</div>
+                <div class="item" data-value="Researcher">Researcher</div>
+                <div class="item" data-value="Professional">Professional</div>
+                <div class="item" data-value="Engineer">Engineer</div>
+                <div class="item" data-value="Civil Servant">Civil Servant</div>
+                <div class="item" data-value="Waiter">Waiter</div>
+                <div class="item" data-value="Salesman">Salesman</div>
+                <div class="item" data-value="Designer">Designer</div>
+                <div class="item" data-value="Businessman">Businessman</div>
+                <div class="item" data-value="Others">Others</div>
               </div>
             </div>
           </div>
           <div class="ui ten wide field">
-            <label>兴趣爱好</label>
-            <input id="hobby-text" type="text" readOnly="true" name="hobby" value="" placeholder="兴趣爱好">
+            <label>Hobbies</label>
+            <input id="hobby-text" type="text" readOnly="true" name="hobby" value="" placeholder="Hobbies...">
           </div>
         </div>
         <div class="two fields">
@@ -82,15 +82,15 @@
             {{> userPhoto}}
           </div>
           <div class="ui ten wide field">
-            <label>自我评价</label>
+            <label>Self-assessment</label>
             <textarea id="evaluate" name="evaluate"  value="" cols="30" rows="15"></textarea>
             <div class="ui message">
               <div class="ui toggle checkbox">
                 <input type="checkbox" name="example">
-                <label>是否同意公开个人信息</label>
+                <label>Agree to public your information</label>
               </div>
             </div>
-            <button type="submit" class="ui blue button">确认</button>
+            <button type="submit" class="ui blue button">Comfirmation</button>
           </div>
         </div>
       </div>
@@ -105,7 +105,7 @@
     </div>
     <div class="file-box text-center pointer ui attached button fileBrowse">
       <i class="photo icon"></i>
-      更换头像
+      Change the photo
     </div>
   </div>
 </template>
