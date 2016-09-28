@@ -12,6 +12,7 @@ export default function(options, user)
   profile.career    = null;
   profile.hobby     = [];
   profile.photo     = null;
+  profile.agree     = null;
 
   if(options.verify)
     user.emails[0].verified = true;

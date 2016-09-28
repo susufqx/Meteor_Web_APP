@@ -3,17 +3,19 @@ Template.formProfile.onRendered(function() {
   this.$('.ui.dropdown').dropdown();
   this.$('#birth').calendar({
       type      : 'date',
-      isChinese : true,
-      text: {
-        days: ['日', '一', '二', '三', '四', '五', '六'],
-        months:['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-        monthsShort: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-        today: '今天',
-        now: '现在',
-        am: '上午',
-        pm: '下午'
-      },
     });
+});
+
+Template.formProfile.onCreated(function() {
+  this.checked = new ReactiveVar(false);
+  $('.toggle.checkbox').checkbox({
+    onChecked:()=>{
+      this.checked.set(true);
+    },
+    onUnchecked:()=>{
+      this.checked.set(false);
+    }
+  });
 });
 
 Template.formProfile.events({
@@ -38,6 +40,8 @@ Template.formProfile.events({
     profile.birthday  = target.birth.value;
     console.log(profile.birthday);
     profile.career    = target.career.value;
+    profile.agree     = template.agree.get();
+
 
     Meteor.call('profile.update',
       username,

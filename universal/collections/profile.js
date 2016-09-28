@@ -8,7 +8,8 @@ const schema = new SimpleSchema ({
   birthday: { type: String,   optional: true, },
   career  : { type: String,   optional: true},
   hobby   : { type: [String], optional: true},
-  photo   : { type: String,   optional: true}
+  photo   : { type: String,   optional: true},
+  agree   : { type: Boolean,  optional: true}
 });
 
 user.attachSchema(
