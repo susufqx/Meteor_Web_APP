@@ -1,21 +1,27 @@
 
+Template.formProfile.helpers({
+  'checked': ()=> Meteor.user().profile.agree
+});
+
 Template.formProfile.onRendered(function() {
   this.$('.ui.dropdown').dropdown();
   this.$('#birth').calendar({
       type      : 'date',
     });
-});
-
-Template.formProfile.onCreated(function() {
-  this.checked = new ReactiveVar(false);
-  $('.toggle.checkbox').checkbox({
+  this.$('.toggle.checkbox').checkbox({
     onChecked:()=>{
       this.checked.set(true);
+      console.log(this.checked.get());
     },
     onUnchecked:()=>{
       this.checked.set(false);
+      console.log(this.checked.get());
     }
   });
+});
+
+Template.formProfile.onCreated(function() {
+  this.checked = new ReactiveVar();
 });
 
 Template.formProfile.events({
@@ -40,7 +46,8 @@ Template.formProfile.events({
     profile.birthday  = target.birth.value;
     console.log(profile.birthday);
     profile.career    = target.career.value;
-    profile.agree     = template.agree.get();
+    console.log(template);
+    profile.agree     = template.checked.get();
 
 
     Meteor.call('profile.update',

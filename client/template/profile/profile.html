@@ -86,7 +86,11 @@
             <textarea id="evaluate" name="evaluate"  value="" cols="30" rows="15"></textarea>
             <div class="ui message">
               <div class="ui toggle checkbox">
-                <input type="checkbox" name="example" id="checkbox-agree">
+                {{#if checked}}
+                  <input type="checkbox" name="example" id="checkbox-agree" checked="checked">
+                {{else}}
+                  <input type="checkbox" name="example" id="checkbox-agree">
+                {{/if}}
                 <label>Agree to public your information</label>
               </div>
             </div>
