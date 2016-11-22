@@ -1,3 +1,3 @@
 #!/bin/sh
 clear
-exec meteor
+exec meteor --settings settings.json $@
