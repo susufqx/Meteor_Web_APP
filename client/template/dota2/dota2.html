@@ -1,13 +1,95 @@
 <template name="dotaTwo">
-  <div class="ui center aligned grid segment">
-    <div class="ui header">
-      <h1>DOTA 2</h1>
-    </div>
-    <div class="ui container" style="margin:1em 8em">
-      <div class="column stackable">
-        <p>Dota 2 dtat</p>
+  <div class="main dotaTwo-part">
+    <div class="header segment">
+      <div class="ui container">
+        <div class="ui huge header">
+          <h2><a>Dota 2</a> <b>Informations</b></h2>
+        </div>
       </div>
     </div>
-    <a class="ui primary button js-test-dota2-button">TEST_DOTA2</a>
+    <div class="ui container second-main">
+      <div class="ui attached segment">
+        <form class="ui form submit-id">
+          <div class="two fields">
+            <div class="field">
+              <div class="ui floating dropdown labeled search icon button js-dota2-type-dropdown">
+                <i class="write square icon"></i>
+                <span class="text dota2-type">Select type of search</span>
+                <div class="menu">
+                  <div class="item">By Account ID</div>
+                  <div class="item">By Match ID</div>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui action input">
+                <input type="text" name="dota2_id" placeholder="Input your ID">
+                <button type="submit" class="ui blue button">Comfirmation</button>
+              </div>
+            </div>
+          </div>
+          {{#if matchInfo}}
+          <div class="field">
+            <table class="ui table">
+              <thead>
+                <tr>
+                  <th>Match ID</th>
+                  <th>Start Time</th>
+                  <th>Duration</th>
+                  <th>First Blood Time</th>
+                  <th>Game Mode</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{matchInfo.match_id}}</td>
+                  <td>{{matchInfo.start_time}}</td>
+                  <td>{{matchInfo.duration}}</td>
+                  <td>{{matchInfo.first_blood_time}}</td>
+                  <td>{{matchInfo.game_mode}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          {{/if}}
+          <div class="field">
+            {{#if matchInfo}}
+              {{> matchPart players=players}}
+            {{/if}}
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
+</template>
+
+<template name="matchPart">
+  <table class="ui celled table">
+    <thead>
+      <tr>
+        <th>Players</th>
+        <th>Heros</th>
+        <th>KDA</th>
+        <th>DAMAGE</th>
+        <th>XPM</th>
+        <th>GPM</th>
+        <th>TD</th>
+        <th>HH</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each player in players}}
+      <tr class="positive">
+        <td>{{player.account_id}}</td>
+        <td>{{player.hero_id}} {{player.level}}</td>
+        <td>{{player.KDA}}</td>
+        <td>{{player.hero_damage}}</td>
+        <td>{{player.xp_per_min}}</td>
+        <td>{{player.gold_per_min}}</td>
+        <td>{{player.tower_damage}}</td>
+        <td>{{player.hero_healing}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </template>
