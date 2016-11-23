@@ -50,7 +50,7 @@ Template.dotaTwo.events({
             let matchInfo = res.result;
             matchInfo.start_time          = moment(new Date(res.result.start_time)).format('LL');
             matchInfo.duration            = getDuration(res.result.duration);
-            matchInfo.first_blood_time    = getDuration(res.result.firts_blood_time);
+            matchInfo.first_blood_time    = getDuration(res.result.first_blood_time);
             matchInfo.game_mode           = getMode(res.result.game_mode);
             template.getMatchInfo.set(matchInfo);
           }
