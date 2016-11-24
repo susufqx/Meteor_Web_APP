@@ -12,6 +12,7 @@ function getMode(number){
     case 1: mode = "All Pick";        break;
     case 2: mode = "Captain's Mode";  break;
   }
+  return mode;
 }
 
 Template.dotaTwo.events({
@@ -48,7 +49,7 @@ Template.dotaTwo.events({
           if(!err && res.result.players){
             console.log(res);
             let matchInfo = res.result;
-            matchInfo.start_time          = moment(new Date(res.result.start_time)).format('LL');
+            matchInfo.start_time          = moment(new Date(res.result.start_time * 1000)).format('LL');
             matchInfo.duration            = getDuration(res.result.duration);
             matchInfo.first_blood_time    = getDuration(res.result.first_blood_time);
             matchInfo.game_mode           = getMode(res.result.game_mode);
@@ -66,16 +67,25 @@ Template.dotaTwo.helpers({
   'players'     : () => {
     let matchInfo = Template.instance().getMatchInfo.get();
     let players;
+    let newPlayers;
+    let len;
     if(matchInfo){
-      players = matchInfo.players;
-      _.each(players, function(player){
+      newPlayers  =   {radiant:[], dire:[]};
+      players     =   matchInfo.players;
+      len         =   players.length;
+      _.each(players, function(player, key){
         let kill     = player.kills;
         let assist   = player.assists;
         let death    = (player.deaths === 0)?1:player.deaths;
-        player.KDA = (kill+assist)/death;
+        player.KDA = Math.round((kill+assist)/death * 10) / 10;
+        if(key < (len/2)){
+          newPlayers.radiant.push(player);
+        }else{
+          newPlayers.dire.push(player);
+        }
       });
     }
-    return players;
+    return newPlayers;
   }
 });
 

@@ -64,6 +64,7 @@
 </template>
 
 <template name="matchPart">
+  <h2>Radiant</h2>
   <table class="ui celled table">
     <thead>
       <tr>
@@ -78,7 +79,36 @@
       </tr>
     </thead>
     <tbody>
-      {{#each player in players}}
+      {{#each player in players.radiant}}
+      <tr class="positive">
+        <td>{{player.account_id}}</td>
+        <td>{{player.hero_id}} {{player.level}}</td>
+        <td>{{player.KDA}}</td>
+        <td>{{player.hero_damage}}</td>
+        <td>{{player.xp_per_min}}</td>
+        <td>{{player.gold_per_min}}</td>
+        <td>{{player.tower_damage}}</td>
+        <td>{{player.hero_healing}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <h2>Dire</h2>
+  <table class="ui celled table">
+    <thead>
+      <tr>
+        <th>Players</th>
+        <th>Heros</th>
+        <th>KDA</th>
+        <th>DAMAGE</th>
+        <th>XPM</th>
+        <th>GPM</th>
+        <th>TD</th>
+        <th>HH</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each player in players.dire}}
       <tr class="positive">
         <td>{{player.account_id}}</td>
         <td>{{player.hero_id}} {{player.level}}</td>
