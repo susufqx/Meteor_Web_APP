@@ -1,32 +1,15 @@
+/* MAIN ROUTER */
 Router.configure({
     layoutTemplate: 'layout',
     loadingTemplate: 'loading',
     notFoundTemplate: 'notFound',
-    waitOn: function () {
+    /*waitOn: function () {
         return Meteor.subscribe('posts');
-    }
+    }*/
 });
 
 Router.route('/',{
     name: 'home'
-});
-
-Router.route('/post_list', {
-  name:'postsList',
-  /*action:()=>{
-    setTitle('Posts List');
-  }*/
-});
-
-Router.route('/posts/:_id', {
-   name: 'postPage',
-   data: function() {
-       return Posts.findOne(this.params._id);
-   }
-});
-
-Router.route('/submit',{
-  name: 'postSubmit'
 });
 
 var requireLogin = function() {
@@ -40,6 +23,3 @@ var requireLogin = function() {
     this.next();
   }
 };
-
-Router.onBeforeAction('dataNotFound', {only: 'postPage'});
-Router.onBeforeAction(requireLogin, {only: 'postSubmit'});

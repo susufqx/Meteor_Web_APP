@@ -28,6 +28,7 @@ Template.header.onRendered(function() {
 Template.menuUser.onRendered(function() {
   this.$('.dropdown')
     .dropdown({
+      on:'hover',
       transition: 'drop',
       action: 'hide'
     });
