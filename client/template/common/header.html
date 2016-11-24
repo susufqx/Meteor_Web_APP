@@ -1,15 +1,15 @@
 <template name="header">
   <div class="main-header">
     <!-- Following Menu -->
-    {{#if isHome}}
+    <!--{{#if isHome}}-->
       <div class="ui large top fixed menu following-menu transition hidden">
         <div class="ui container">
           {{> menuList isHome=isHome}}
         </div>
       </div>
-    {{/if}}
+    <!--{{/if}}-->
     <!-- Menu -->
-    <div class="ui menu {{#if isHome}}secondary large{{else}}fixed{{/if}} main-menu">
+    <div class="ui menu {{#if isHome}}secondary large{{/if}} main-menu">
       <div class="ui container">
         {{#unless isHome}}
           <a href="{{pathFor 'home'}}" class="item"><i class="large home icon home-icon"></i></a>
