@@ -1,2 +1,46 @@
 <template name="blog">
+  <div class="main blog-part">
+    <div class="header segment">
+      <div class="ui container">
+        <div class="ui huge header">
+          <h2>SusuFQX's Blog</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui stackable grid blog-grid">
+    <div class="four wide column">
+      <div class="ui divider"></div>
+      <div class="ui card">
+        <a>LABEL PART</a>
+      </div>
+    </div>
+    <div class="ten wide column">
+      <div class="ui divider"></div>
+        {{> listPart}}
+      <div class="ui divider"></div>
+        {{> listPart}}
+      <div class="ui divider"></div>
+    </div>
+  </div>
+</template>
+
+<template name="listPart">
+  <div class="ui comments">
+    <div class="comment blog-list">
+      <a class="avatar">
+        <img src="/images/index/defaultPhoto.jpg">
+      </a>
+      <div class="content">
+        <a class="author">Article of Test in this beta blog</a>
+        <div class="metadata">
+          <span class="date">5 days ago</span>
+        </div>
+        <div class="text">This is my first blog which designed and created by myself. It is just a test product which now can only run in the native server. But I want to chanllange myself and solve the problems.Go!Go!SusuFQX!</div>
+        <div class="actions">
+          <a class="reply">Read More</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
