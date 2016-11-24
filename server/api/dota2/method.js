@@ -15,6 +15,13 @@ Meteor.methods({
 
   'getAccountDota2'(id){
     check(id, String);
-    return undefined;
+    let key = Meteor.settings.private.dota2api.key;
+
+    const Dota2Api  = require('dota2-api');
+    const da        = Dota2Api.create(key,570);
+    const options   = {
+      account_id:id
+    };
+    return da.getMatchHistory(options);
   }
 });

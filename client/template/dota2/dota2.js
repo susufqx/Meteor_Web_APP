@@ -39,6 +39,7 @@ Template.dotaTwo.events({
           if(!err && res){
             console.log(res);
             template.getAccountInfo.set(res);
+            template.getMatchInfo.set(null);
           }
         }
       );
@@ -54,6 +55,7 @@ Template.dotaTwo.events({
             matchInfo.first_blood_time    = getDuration(res.result.first_blood_time);
             matchInfo.game_mode           = getMode(res.result.game_mode);
             template.getMatchInfo.set(matchInfo);
+            template.getAccountInfo.set(null);
           }
         }
       );
