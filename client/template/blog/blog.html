@@ -22,14 +22,14 @@
       <a class="ui green basic label">Economy (0)</a>
       <a class="ui green basic label">Politic (0)</a>
       <a class="ui green basic label">Culture (0)</a>
-      <a class="ui divider"></div>
+      <a class="ui divider"></a>
     </div>
     <div class="ten wide column">
       <div class="ui divider"></div>
-        {{> listPart}}
-      <div class="ui divider"></div>
-        {{> listPart}}
-      <div class="ui divider"></div>
+      {{#each blog in blogs}}
+        {{> listPart blog=blog}}
+        <div class="ui divider"></div>
+      {{/each}}
     </div>
   </div>
 </template>
@@ -41,11 +41,11 @@
         <img src="/images/index/defaultPhoto.jpg">
       </a>
       <div class="content">
-        <a class="author">Article of Test in this beta blog</a>
+        <a class="author">{{blog.title}}</a>
         <div class="metadata">
-          <span class="date">5 days ago</span>
+          <span class="date">{{blog.date}}</span>
         </div>
-        <div class="text">This is my first blog which designed and created by myself. It is just a test product which now can only run in the native server. But I want to chanllange myself and solve the problems.Go!Go!SusuFQX!</div>
+        <div class="text">{{blog.text}}</div>
         <div class="actions">
           <a class="reply">Read More</a>
         </div>
