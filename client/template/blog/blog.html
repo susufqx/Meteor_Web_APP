@@ -41,13 +41,13 @@
         <img src="/images/index/defaultPhoto.jpg">
       </a>
       <div class="content">
-        <a class="author">{{blog.title}}</a>
+        <a class="author" href="/blog/{{blog._id}}">{{blog.title}}</a>
         <div class="metadata">
           <span class="date">{{blog.date}}</span>
         </div>
         <div class="text">{{blog.text}}</div>
         <div class="actions">
-          <a class="reply">Read More</a>
+          <a class="reply" href="/blog/{{blog._id}}">Read More</a>
         </div>
       </div>
     </div>
