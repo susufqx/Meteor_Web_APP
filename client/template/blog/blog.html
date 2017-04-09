@@ -25,11 +25,31 @@
       <a class="ui divider"></a>
     </div>
     <div class="ten wide column">
-      <div class="ui divider"></div>
-      {{#each blog in blogs}}
-        {{> listPart blog=blog}}
+      {{#unless write}}
+        <a class="ui red inverted button js-write-blog">
+          <i class="write icon"></i>
+          New Blog
+        </a>
         <div class="ui divider"></div>
-      {{/each}}
+        {{#each blog in blogs}}
+          {{> listPart blog=blog}}
+          <div class="ui divider"></div>
+        {{/each}}
+      {{else}}
+        <a class="ui blue inverted button js-end-blog">
+          <i class="remove icon"></i>
+          End writting
+        </a>
+        <form class="ui reply form">
+          <div class="ui fluid icon input">
+            <input type="text" placeholder="Enter the title of the blog...">
+          </div>
+          <div class="field">
+            <textarea style="margin-top: 0px; margin-bottom: 0px; height: 280px;"></textarea>
+          </div>
+          <div class="ui green inverted middle button js-confirm-blog">Submit the blog</div>
+        </form>
+      {{/unless}}
     </div>
   </div>
 </template>
