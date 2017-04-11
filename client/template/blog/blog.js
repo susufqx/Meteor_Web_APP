@@ -7,7 +7,7 @@ Template.blog.onCreated(function(){
   this.label.set();*/
 
   this.autorun(()=> {
-    let blogs = Meteor.blogs.find().fetch();
+    let blogs = Meteor.blogs.find({userID: Meteor.userId()}).fetch();
     blogs     = blogs.reverse();
     if(blogs !== []){
       _.each(blogs, function(blog){
