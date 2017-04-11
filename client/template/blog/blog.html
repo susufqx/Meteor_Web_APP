@@ -42,12 +42,12 @@
         </a>
         <form class="ui reply form">
           <div class="ui fluid icon input">
-            <input type="text" placeholder="Enter the title of the blog...">
+            <input name="title" type="text" placeholder="Enter the title of the blog...">
           </div>
           <div class="field">
-            <textarea style="margin-top: 0px; margin-bottom: 0px; height: 280px;"></textarea>
+            <textarea name="text" style="margin-top: 0px; margin-bottom: 0px; height: 280px;"></textarea>
           </div>
-          <div class="ui green inverted middle button js-confirm-blog">Submit the blog</div>
+          <button type="submit" class="ui green inverted middle button">Submit the blog</button>
         </form>
       {{/unless}}
     </div>
