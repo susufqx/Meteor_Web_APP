@@ -9,7 +9,8 @@
     "bcrypt": "^0.8.7",
     "dota2-api": "~0.2.1",
     "meteor-node-stubs": "~0.2.0",
-    "mongoose":"~4.4.20"
+    "mongoose": "~4.4.20",
+    "steam": "^1.4.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.1"
