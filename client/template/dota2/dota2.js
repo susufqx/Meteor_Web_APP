@@ -33,6 +33,7 @@ Template.dotaTwo.events({
     if((kind_id < 0) || (!dota_id)) {
       alert('Choose type and enter the dota2 id please!');
     }else if(kind_id === 0){
+      //Router.go('/dota2/user/dota_id');
       Meteor.call('getAccountDota2',
         dota_id,
         (err, res)=> {
@@ -44,6 +45,9 @@ Template.dotaTwo.events({
         }
       );
     }else if(kind_id === 1){
+      //Router.current().route.getName()
+      //Router.go('/dota2/match/:_id',_id = dota_id);
+      //Router.go();
       Meteor.call('getMatchDota2',
         dota_id,
         (err, res)=> {

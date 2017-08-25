@@ -15,13 +15,17 @@ Meteor.methods({
 
   'getAccountDota2'(id){
     check(id, String);
+    //let steamids = parseInt(id) + 76561197960265728;
     let key = Meteor.settings.private.dota2api.key;
 
     const Dota2Api  = require('dota2-api');
     const da        = Dota2Api.create(key,570);
+
+    //id = steamids.toString();
     const options   = {
-      account_id:id
+      steamids:id
     };
-    return da.getMatchHistory(options);
+    console.log(options);
+    return da.getPlayerSummaries(options);
   }
 });
