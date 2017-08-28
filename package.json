@@ -5,18 +5,19 @@
     "start": "meteor run"
   },
   "dependencies": {
-    "babel-runtime": "^6.18.0",
+    "babel-runtime": "^6.26.0",
     "bcrypt": "^0.8.7",
     "dota2-api": "~0.2.1",
     "dota2-web-api": "^1.0.4",
     "install": "^0.10.1",
-    "meteor-node-stubs": "~0.2.0",
+    "meteor-node-stubs": "^0.2.11",
     "mongoose": "~4.4.20",
-    "npm": "^5.3.0",
-    "steam": "^1.4.0"
+    "npm": "^5.4.0",
+    "steam": "^1.4.0",
+    "susu-dota2-api": "^1.0.4"
   },
   "devDependencies": {
-    "autoprefixer": "^6.3.1"
+    "autoprefixer": "^6.7.7"
   },
   "postcss": {
     "plugins": {

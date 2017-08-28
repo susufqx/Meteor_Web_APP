@@ -5,8 +5,10 @@ Meteor.methods({
     check(id, String);
     let key = Meteor.settings.private.dota2api.key;
 
-    const Dota2Api  =   require('dota2-api');
-    const da        =   Dota2Api.create(key,570);
+    //const Dota2Api  =   require('dota2-api');
+    //const da        =   Dota2Api.create(key,570);
+    const Dota2Api  =   require('susu-dota2-api');
+    const da        =   Dota2Api.create(key);
     const options   =   {
       match_id:id
     };
@@ -18,10 +20,9 @@ Meteor.methods({
     //let steamids = parseInt(id) + 76561197960265728;
     let key = Meteor.settings.private.dota2api.key;
 
-    const Dota2Api  = require('dota2-api');
-    const da        = Dota2Api.create(key,570);
+    const Dota2Api  =   require('susu-dota2-api');
+    const da        =   Dota2Api.create(key);
 
-    //id = steamids.toString();
     const options   = {
       steamids:id
     };

@@ -33,31 +33,29 @@ Template.dotaTwo.events({
     if((kind_id < 0) || (!dota_id)) {
       alert('Choose type and enter the dota2 id please!');
     }else if(kind_id === 0){
-      //Router.go('/dota2/user/dota_id');
+      template.getAccountInfo.set(null);
       Meteor.call('getAccountDota2',
         dota_id,
         (err, res)=> {
           if(!err && res){
-            console.log(res);
             template.getAccountInfo.set(res);
             template.getMatchInfo.set(null);
           }
         }
       );
     }else if(kind_id === 1){
-      //Router.current().route.getName()
-      //Router.go('/dota2/match/:_id',_id = dota_id);
-      //Router.go();
       Meteor.call('getMatchDota2',
         dota_id,
         (err, res)=> {
           if(!err && res.result.players){
-            console.log(res);
             let matchInfo = res.result;
+            let players   = res.players;
+
             matchInfo.start_time          = moment(new Date(res.result.start_time * 1000)).format('LL');
             matchInfo.duration            = getDuration(res.result.duration);
             matchInfo.first_blood_time    = getDuration(res.result.first_blood_time);
             matchInfo.game_mode           = getMode(res.result.game_mode);
+
             template.getMatchInfo.set(matchInfo);
             template.getAccountInfo.set(null);
           }
@@ -73,8 +71,9 @@ Template.dotaTwo.helpers({
   'players'     : () => {
     let matchInfo = Template.instance().getMatchInfo.get();
     let players;
-    let newPlayers;
+    let newPlayers = {};
     let len;
+    let playerInfo = [];
     if(matchInfo){
       newPlayers  =   {radiant:[], dire:[]};
       players     =   matchInfo.players;
@@ -84,20 +83,55 @@ Template.dotaTwo.helpers({
         let assist   = player.assists;
         let death    = (player.deaths === 0)?1:player.deaths;
         player.KDA = Math.round((kill+assist)/death * 10) / 10;
+        player.key = key;
         if(key < (len/2)){
           newPlayers.radiant.push(player);
         }else{
           newPlayers.dire.push(player);
         }
       });
+      for(let i=0;i<5;i++) {
+        let add = Template.instance().playerInfo.get(i.toString()) || {};
+        newPlayers.radiant[i].playerInfo = (!add.personaname)?{personaname:'UNKNOWN PLAYER'}:add;
+      }
+      for(let i=0;i<5;i++) {
+        let add = Template.instance().playerInfo.get((i+5).toString()) || {};
+        newPlayers.dire[i].playerInfo = (!add.personaname)?{personaname:'UNKNOWN PLAYER'}:add;
+      }
     }
+    console.log(newPlayers);
     return newPlayers;
   }
 });
 
 Template.dotaTwo.onCreated(function() {
-  this.getAccountInfo = new ReactiveVar();
-  this.getMatchInfo   = new ReactiveVar();
+  this.getAccountInfo   =   new ReactiveVar();
+  this.getMatchInfo     =   new ReactiveVar();
+  (this.playerInfo      =   new ReactiveDict()).setDefault({
+    '0':{},'1':{},'2':{},'3':{},'4':{},
+    '5':{},'6':{},'7':{},'8':{},'9':{}
+  });
+
+  Tracker.autorun(()=> {
+    let matchInfo = this.getMatchInfo.get();
+    if(matchInfo){
+      let players = matchInfo.players;
+      for(let i=0;i<10;i++) {
+        Meteor.call('getAccountDota2',
+          players[i].account_id.toString(),
+          (err, res)=>{
+            if(!err && res){
+              let add   = res.response.players[0];
+              add.key   = i;
+              this.playerInfo.set(i.toString(), add);
+            }else{
+              console.log(err);
+            }
+          }
+        );
+      }
+    }
+  });
 });
 
 Template.dotaTwo.onRendered(function() {
