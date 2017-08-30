@@ -17,10 +17,6 @@ function getMode(number){
   return mode;
 }
 
-function getDisplay(number) {
-  return (number % 2 === 0)?false : true;
-}
-
 Template.dotaTwo.events({
   'submit .submit-id'(evt, template){
     evt.preventDefault();
@@ -61,7 +57,6 @@ Template.dotaTwo.events({
             matchInfo.duration            = getDuration(res.result.duration);
             matchInfo.first_blood_time    = getDuration(res.result.first_blood_time);
             matchInfo.game_mode           = getMode(res.result.game_mode);
-            matchInfo.displayDeep         = getDisplay(res.result.player_slot);
 
             template.getMatchInfo.set(matchInfo);
             template.getAccountInfo.set(null);

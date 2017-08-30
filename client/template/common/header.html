@@ -1,21 +1,21 @@
 <template name="header">
-  <div class="main-header">
+  <div class="main-header" style="background-color:{{#if isDota}}#1E1E1E{{/if}}">
     <!-- Following Menu -->
-    <div class="ui large top fixed menu following-menu transition hidden">
+    <div class="ui large top fixed {{#if isDota}}inverted{{/if}} menu following-menu transition hidden">
       <div class="ui container">
         {{#unless isHome}}
           <a href="{{pathFor 'home'}}" class="item"><i class="large home icon home-icon"></i></a>
         {{/unless}}
-        {{> menuList isHome=isHome}}
+        {{> menuList}}
       </div>
     </div>
     <!-- Menu -->
-    <div class="ui menu {{#if isHome}}secondary large{{/if}} main-menu">
+    <div class="ui {{#if isDota}}inverted{{/if}} menu {{#if isHome}}secondary large{{/if}} main-menu">
       <div class="ui container">
         {{#unless isHome}}
           <a href="{{pathFor 'home'}}" class="item"><i class="large home icon home-icon"></i></a>
         {{/unless}}
-        {{> menuList isHome=isHome}}
+        {{> menuList}}
       </div>
     </div>
   </div>

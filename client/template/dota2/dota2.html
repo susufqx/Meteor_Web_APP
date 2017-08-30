@@ -24,18 +24,15 @@
             <div class="field">
               <div class="ui action input">
                 <input type="text" name="dota2_id" placeholder="Input your ID">
-                <button type="submit" class="ui blue button">Comfirmation</button>
+                <button type="submit" class="ui button">Comfirmation</button>
               </div>
             </div>
           </div>
-          <!--{{#if playerInfo}}
-            {{playerInfo}}
-          {{/if}}-->
           {{#if matchInfo}}
           <div class="field">
-            <table class="ui table">
+            <table class="ui inverted table">
               <thead>
-                <tr>
+                <tr class='center aligned'>
                   <th>Match ID</th>
                   <th>Start Time</th>
                   <th>Duration</th>
@@ -44,7 +41,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr class='center aligned'>
                   <td>{{matchInfo.match_id}}</td>
                   <td>{{matchInfo.start_time}}</td>
                   <td>{{matchInfo.duration}}</td>
@@ -86,14 +83,11 @@
 <template name='tableMatch'>
   <table class="ui striped inverted black table">
     <thead>
-      <tr>
+      <tr class='center aligned'>
         <th></th>
         <th>Players</th>
         <th>Heros</th>
-        <th>Kills</th>
-        <th>Deaths</th>
-        <th>Assists</th>
-        <th>KDA</th>
+        <th>KDA <br>K/D/A</th>
         <th>DAMAGE</th>
         <th>XPM</th>
         <th>GPM</th>
@@ -103,14 +97,17 @@
     </thead>
     <tbody>
       {{#each player in getPlayers}}
-      <tr>
+      <tr class='center aligned'>
         <td><a></a><img src='{{player.playerInfo.avatar}}'></td>
         <td>{{player.playerInfo.personaname}}</td>
         <td>{{player.hero_id}} /{{player.level}}</td>
-        <td>{{player.kills}}</td>
-        <td>{{player.deaths}}</td>
-        <td>{{player.assists}}</td>
-        <td>{{player.KDA}}</td>
+        <td>
+          <a class="kda_number">
+            {{player.KDA}}
+          </a>
+          <br>
+          {{player.kills}}/{{player.deaths}}/{{player.assists}}
+        </td>
         <td>{{player.hero_damage}}</td>
         <td>{{player.xp_per_min}}</td>
         <td>{{player.gold_per_min}}</td>

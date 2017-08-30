@@ -7,6 +7,11 @@ Template.header.helpers({
     } else {
       return false;
     }
+  },
+
+  'isDota': ()=> {
+    let pathName = Router.current().url;
+    return (_.last(pathName.split('/')) === 'dota2')? true : false;
   }
 });
 
