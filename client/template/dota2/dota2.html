@@ -66,10 +66,16 @@
   </div>
 </template>
 <template name="matchPart">
-  <h2>Radiant</h2>
+  <h2>
+    Radiant
+    {{#if radiant_win}}
+      (WIN THE GAME)
+    {{/if}}
+  </h2>
   <table class="ui celled table">
     <thead>
       <tr>
+        <th></th>
         <th>Players</th>
         <th>Heros</th>
         <th>Kills</th>
@@ -86,6 +92,7 @@
     <tbody>
       {{#each player in players.radiant}}
       <tr class="positive">
+        <td><a></a><img src='{{player.playerInfo.avatar}}'></td>
         <td>{{player.playerInfo.personaname}}</td>
         <td>{{player.hero_id}} /{{player.level}}</td>
         <td>{{player.kills}}</td>
@@ -101,10 +108,16 @@
       {{/each}}
     </tbody>
   </table>
-  <h2>Dire</h2>
+  <h2>
+    Dire
+    {{#unless radiant_win}}
+      (WIN THE GAME)
+    {{/unless}}
+  </h2>
   <table class="ui celled table">
     <thead>
       <tr>
+        <th></th>
         <th>Players</th>
         <th>Heros</th>
         <th>Kills</th>
@@ -121,6 +134,7 @@
     <tbody>
       {{#each player in players.dire}}
       <tr class="positive">
+        <td><a></a><img src='{{player.playerInfo.avatar}}'></td>
         <td>{{player.playerInfo.personaname}}</td>
         <td>{{player.hero_id}} /{{player.level}}</td>
         <td>{{player.kills}}</td>

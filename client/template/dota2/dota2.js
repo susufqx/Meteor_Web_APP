@@ -9,8 +9,10 @@ function getDuration(secondTime){
 function getMode(number){
   let mode;
   switch (number) {
-    case 1: mode = "All Pick";        break;
-    case 2: mode = "Captain's Mode";  break;
+    case 22 : mode = "All Pick";        break;
+    case 2  : mode = "Captain's Mode";  break;
+    case 3  : mode = "Random Mode";     break;
+    default : mode = "UNKNOWN";
   }
   return mode;
 }
@@ -68,13 +70,20 @@ Template.dotaTwo.events({
 Template.dotaTwo.helpers({
   'accountInfo' : () => Template.instance().getAccountInfo.get(),
   'matchInfo'   : () => Template.instance().getMatchInfo.get(),
-  'players'     : () => {
+  'radiant_win' : () => {
     let matchInfo = Template.instance().getMatchInfo.get();
+    return matchInfo.radiant_win;
+  },
+  'players'     : () => {
+    let matchInfo  = Template.instance().getMatchInfo.get();
     let players;
     let newPlayers = {};
     let len;
     let playerInfo = [];
+    let front_img  = 'http://cdn.dota2.com/steamcommunity/public/images/avatars/';
+    let noInfo_add = {personaname:'UNKNOWN PLAYER', avatar:'/images/items/unknown_player.jpg'};
     if(matchInfo){
+      console.log(matchInfo);
       newPlayers  =   {radiant:[], dire:[]};
       players     =   matchInfo.players;
       len         =   players.length;
@@ -92,11 +101,11 @@ Template.dotaTwo.helpers({
       });
       for(let i=0;i<5;i++) {
         let add = Template.instance().playerInfo.get(i.toString()) || {};
-        newPlayers.radiant[i].playerInfo = (!add.personaname)?{personaname:'UNKNOWN PLAYER'}:add;
+        newPlayers.radiant[i].playerInfo = (!add.personaname)?noInfo_add:add;
       }
       for(let i=0;i<5;i++) {
         let add = Template.instance().playerInfo.get((i+5).toString()) || {};
-        newPlayers.dire[i].playerInfo = (!add.personaname)?{personaname:'UNKNOWN PLAYER'}:add;
+        newPlayers.dire[i].playerInfo = (!add.personaname)?noInfo_add:add;
       }
     }
     console.log(newPlayers);
