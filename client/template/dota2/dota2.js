@@ -1,3 +1,5 @@
+import {dota2_items} from '/lib/dota2_items/dota2_method.js';
+
 function getDuration(secondTime){
   let second      = secondTime % 60;
   let minuteTime  = (secondTime-second)/60;
@@ -83,7 +85,7 @@ Template.dotaTwo.helpers({
     let front_img  = 'http://cdn.dota2.com/steamcommunity/public/images/avatars/';
     let noInfo_add = {personaname:'UNKNOWN PLAYER', avatar:'/images/items/unknown_player.jpg'};
     if(matchInfo){
-      console.log(matchInfo);
+      //console.log(matchInfo);
       newPlayers  =   {radiant:[], dire:[]};
       players     =   matchInfo.players;
       len         =   players.length;
@@ -91,7 +93,9 @@ Template.dotaTwo.helpers({
         let kill     = player.kills;
         let assist   = player.assists;
         let death    = (player.deaths === 0)?1:player.deaths;
-        player.KDA = Math.round((kill+assist)/death * 10) / 10;
+        player.KDA        =   Math.round((kill+assist)/death * 10) / 10;
+        player.heroName   =   dota2_items.getHeroName(player.hero_id);
+        player.heroImage  =   dota2_items.getHeroImage(player.hero_id);
         if(key < (len/2)){
           newPlayers.radiant.push(player);
         }else{
@@ -99,7 +103,7 @@ Template.dotaTwo.helpers({
         }
       });
       for(let i=0;i<5;i++) {
-        let add = Template.instance().playerInfo.get(i.toString()) || {};
+        let add       =   Template.instance().playerInfo.get(i.toString()) || {};
         newPlayers.radiant[i].playerInfo = (!add.personaname)?noInfo_add:add;
       }
       for(let i=0;i<5;i++) {

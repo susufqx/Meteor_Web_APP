@@ -81,14 +81,15 @@
 </template>
 
 <template name='tableMatch'>
-  <table class="ui striped inverted black table">
+  <table class="ui striped inverted black mini table">
     <thead>
       <tr class='center aligned'>
         <th></th>
         <th>Players</th>
         <th>Heros</th>
-        <th>KDA <br>K/D/A</th>
+        <th>KDA &nbsp; K/D/A</th>
         <th>DAMAGE</th>
+        <th>LH/DN</th>
         <th>XPM</th>
         <th>GPM</th>
         <th>TowerDamage</th>
@@ -100,15 +101,21 @@
       <tr class='center aligned'>
         <td><a></a><img src='{{player.playerInfo.avatar}}'></td>
         <td>{{player.playerInfo.personaname}}</td>
-        <td>{{player.hero_id}} /{{player.level}}</td>
+        <td class="left aligned">
+          <a>
+            <img class="ui middle aligned image" src="{{player.heroImage}}">
+            {{player.level}}
+          </a>
+        </td>
         <td>
           <a class="kda_number">
             {{player.KDA}}
           </a>
-          <br>
+          &nbsp;
           {{player.kills}}/{{player.deaths}}/{{player.assists}}
         </td>
         <td>{{player.hero_damage}}</td>
+        <td>{{player.last_hits}}/{{player.denies}}</td>
         <td>{{player.xp_per_min}}</td>
         <td>{{player.gold_per_min}}</td>
         <td>{{player.tower_damage}}</td>
