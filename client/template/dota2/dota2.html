@@ -65,56 +65,26 @@
     </div>
   </div>
 </template>
+
 <template name="matchPart">
-  <h2>
+  <h2 class='radiant'>
     Radiant
     {{#if radiant_win}}
       (WIN THE GAME)
     {{/if}}
   </h2>
-  <table class="ui celled table">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Players</th>
-        <th>Heros</th>
-        <th>Kills</th>
-        <th>Deaths</th>
-        <th>Assists</th>
-        <th>KDA</th>
-        <th>DAMAGE</th>
-        <th>XPM</th>
-        <th>GPM</th>
-        <th>TowerDamage</th>
-        <th>HeroHealing</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each player in players.radiant}}
-      <tr class="positive">
-        <td><a></a><img src='{{player.playerInfo.avatar}}'></td>
-        <td>{{player.playerInfo.personaname}}</td>
-        <td>{{player.hero_id}} /{{player.level}}</td>
-        <td>{{player.kills}}</td>
-        <td>{{player.deaths}}</td>
-        <td>{{player.assists}}</td>
-        <td>{{player.KDA}}</td>
-        <td>{{player.hero_damage}}</td>
-        <td>{{player.xp_per_min}}</td>
-        <td>{{player.gold_per_min}}</td>
-        <td>{{player.tower_damage}}</td>
-        <td>{{player.hero_healing}}</td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
-  <h2>
+  {{>tableMatch getPlayers=players.radiant}}
+  <h2 class='dire'>
     Dire
     {{#unless radiant_win}}
       (WIN THE GAME)
     {{/unless}}
   </h2>
-  <table class="ui celled table">
+  {{>tableMatch getPlayers=players.dire}}
+</template>
+
+<template name='tableMatch'>
+  <table class="ui striped inverted black table">
     <thead>
       <tr>
         <th></th>
@@ -132,8 +102,8 @@
       </tr>
     </thead>
     <tbody>
-      {{#each player in players.dire}}
-      <tr class="positive">
+      {{#each player in getPlayers}}
+      <tr>
         <td><a></a><img src='{{player.playerInfo.avatar}}'></td>
         <td>{{player.playerInfo.personaname}}</td>
         <td>{{player.hero_id}} /{{player.level}}</td>
