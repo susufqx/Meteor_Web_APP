@@ -1,4 +1,4 @@
-import {dota2_items} from '/lib/dota2_items/dota2_method.js';
+import {dota2_data} from '/lib/dota2_data/dota2_method.js';
 
 function getDuration(secondTime){
   let second      = secondTime % 60;
@@ -17,6 +17,16 @@ function getMode(number){
     default : mode = "UNKNOWN";
   }
   return mode;
+}
+
+function deleteNull(array) {
+  let newArray = [];
+  for (let i in array) {
+    if(array[i]){
+      newArray.push(array[i]);
+    }
+  }
+  return newArray;
 }
 
 Template.dotaTwo.events({
@@ -93,9 +103,25 @@ Template.dotaTwo.helpers({
         let kill     = player.kills;
         let assist   = player.assists;
         let death    = (player.deaths === 0)?1:player.deaths;
-        player.KDA        =   Math.round((kill+assist)/death * 10) / 10;
-        player.heroName   =   dota2_items.getHeroName(player.hero_id);
-        player.heroImage  =   dota2_items.getHeroImage(player.hero_id);
+        let getItems = [
+          dota2_data.getItemImage(player.item_0),
+          dota2_data.getItemImage(player.item_1),
+          dota2_data.getItemImage(player.item_2),
+          dota2_data.getItemImage(player.item_3),
+          dota2_data.getItemImage(player.item_4),
+          dota2_data.getItemImage(player.item_5)
+        ];
+        let getPack = [
+          dota2_data.getItemImage(player.backpack_0),
+          dota2_data.getItemImage(player.backpack_1),
+          dota2_data.getItemImage(player.backpack_2)
+        ];
+
+        player.KDA        =   (Math.round((kill+assist)/death * 10) / 10).toFixed(1);
+        player.heroName   =   dota2_data.getHeroName(player.hero_id);
+        player.heroImage  =   dota2_data.getHeroImage(player.hero_id);
+        player.itemsImage =   {items:deleteNull(getItems), pack:deleteNull(getPack)};
+
         if(key < (len/2)){
           newPlayers.radiant.push(player);
         }else{
@@ -128,7 +154,7 @@ Template.dotaTwo.onCreated(function() {
     let matchInfo = this.getMatchInfo.get();
     if(matchInfo){
       let players = matchInfo.players;
-      for(let i=0;i<10;i++) {
+      for(let i in players) {
         Meteor.call('getAccountDota2',
           players[i].account_id.toString(),
           (err, res)=>{

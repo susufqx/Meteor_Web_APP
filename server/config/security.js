@@ -10,5 +10,6 @@ export default function (BrowserPolicy) {
   BrowserPolicy.content.allowOriginForAll("*.googleusercontent.com");
   BrowserPolicy.content.allowOriginForAll("*.fbcdn.net");
   BrowserPolicy.content.allowOriginForAll("steamcdn-a.akamaihd.net");
+  BrowserPolicy.content.allowOriginForAll("*.steamstatic.com");
   BrowserPolicy.content.allowFontDataUrl();
 }

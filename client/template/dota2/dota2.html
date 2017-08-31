@@ -8,57 +8,55 @@
       </div>
     </div>
     <div class="ui container second-main">
-      <div class="ui attached segment">
-        <form class="ui form submit-id">
-          <div class="two fields">
-            <div class="field">
-              <div class="ui floating dropdown labeled search icon button js-dota2-type-dropdown">
-                <i class="write square icon"></i>
-                <span class="text dota2-type">Select type of search</span>
-                <div class="menu">
-                  <div class="item">By Account ID</div>
-                  <div class="item">By Match ID</div>
-                </div>
-              </div>
-            </div>
-            <div class="field">
-              <div class="ui action input">
-                <input type="text" name="dota2_id" placeholder="Input your ID">
-                <button type="submit" class="ui button">Comfirmation</button>
+      <form class="ui form submit-id">
+        <div class="two fields">
+          <div class="field">
+            <div class="ui floating dropdown labeled search icon button js-dota2-type-dropdown">
+              <i class="write square icon"></i>
+              <span class="text dota2-type">Select type of search</span>
+              <div class="menu">
+                <div class="item">By Account ID</div>
+                <div class="item">By Match ID</div>
               </div>
             </div>
           </div>
+          <div class="field">
+            <div class="ui action input">
+              <input type="text" name="dota2_id" placeholder="Input your ID">
+              <button type="submit" class="ui button">Comfirmation</button>
+            </div>
+          </div>
+        </div>
+        {{#if matchInfo}}
+        <div class="field">
+          <table class="ui inverted table">
+            <thead>
+              <tr class='center aligned'>
+                <th>Match ID</th>
+                <th>Start Time</th>
+                <th>Duration</th>
+                <th>First Blood Time</th>
+                <th>Game Mode</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='center aligned'>
+                <td>{{matchInfo.match_id}}</td>
+                <td>{{matchInfo.start_time}}</td>
+                <td>{{matchInfo.duration}}</td>
+                <td>{{matchInfo.first_blood_time}}</td>
+                <td>{{matchInfo.game_mode}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        {{/if}}
+        <div class="field">
           {{#if matchInfo}}
-          <div class="field">
-            <table class="ui inverted table">
-              <thead>
-                <tr class='center aligned'>
-                  <th>Match ID</th>
-                  <th>Start Time</th>
-                  <th>Duration</th>
-                  <th>First Blood Time</th>
-                  <th>Game Mode</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class='center aligned'>
-                  <td>{{matchInfo.match_id}}</td>
-                  <td>{{matchInfo.start_time}}</td>
-                  <td>{{matchInfo.duration}}</td>
-                  <td>{{matchInfo.first_blood_time}}</td>
-                  <td>{{matchInfo.game_mode}}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+            {{> matchPart players=players}}
           {{/if}}
-          <div class="field">
-            {{#if matchInfo}}
-              {{> matchPart players=players}}
-            {{/if}}
-          </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   </div>
 </template>
@@ -81,19 +79,21 @@
 </template>
 
 <template name='tableMatch'>
-  <table class="ui striped inverted black mini table">
+  <table class="ui striped inverted black mini compact table">
     <thead>
       <tr class='center aligned'>
         <th></th>
         <th>Players</th>
         <th>Heros</th>
-        <th>KDA &nbsp; K/D/A</th>
+        <th>KDA</th>
+        <th>K/D/A</th>
         <th>DAMAGE</th>
         <th>LH/DN</th>
         <th>XPM</th>
         <th>GPM</th>
-        <th>TowerDamage</th>
-        <th>HeroHealing</th>
+        <th>TD</th> <!-- TowerDamage -->
+        <th>HH</th> <!-- HeroHealing -->
+        <th>Items</th>
       </tr>
     </thead>
     <tbody>
@@ -111,7 +111,8 @@
           <a class="kda_number">
             {{player.KDA}}
           </a>
-          &nbsp;
+        </td>
+        <td>
           {{player.kills}}/{{player.deaths}}/{{player.assists}}
         </td>
         <td>{{player.hero_damage}}</td>
@@ -120,6 +121,20 @@
         <td>{{player.gold_per_min}}</td>
         <td>{{player.tower_damage}}</td>
         <td>{{player.hero_healing}}</td>
+        <td class="left middle aligned">
+          <div class="ui mini images left aligned {{#if player.itemsImage.pack.[0]}}top-images{{/if}}">
+            {{#each image in player.itemsImage.items}}
+              <a><img src="{{image}}"></a>
+            {{/each}}
+          </div>
+          {{#if player.itemsImage.pack.[0]}}
+          <div class="ui mini images left aligned bottom-images">
+            {{#each pack in player.itemsImage.pack}}
+              <a><img src="{{pack}}"></a>
+            {{/each}}
+          </div>
+          {{/if}}
+        </td>
       </tr>
       {{/each}}
     </tbody>
