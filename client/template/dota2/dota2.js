@@ -7,9 +7,9 @@ Template.searchPart.events ({
 
     switch (type) {
       case 'By Account ID'  :
-        if(template.data) {
+        /*if(template.data) {
           template.data.playerInfo.set();
-        }
+        }*/
         Router.go('dotaTwoPlayer',  {_id: dota_id});
       break;
       case 'By Match ID'    :

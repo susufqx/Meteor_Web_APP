@@ -136,7 +136,7 @@ Template.dotaTwoMatch.onCreated(function() {
               let add   = res.response.players[0];
               add.key   = i;
               this.playerInfo.set(i.toString(), add);
-            }else{
+            }else if(err){
               console.log(err);
             }
           }

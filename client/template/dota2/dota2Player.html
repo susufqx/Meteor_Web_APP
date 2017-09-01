@@ -1,3 +1,31 @@
 <template name="dotaTwoPlayer">
-  
+  <div class="main dotaTwoPlayer-part">
+    <div class="header segment">
+      <div class="ui container">
+        <div class="ui center aligned huge header">
+          <a class="ui center aligned image">
+            <img src="{{playerInfo.avatarfull}}"><br>
+            {{playerInfo.personaname}}
+          </a>
+        </div>
+      </div>
+    </div>
+    <!--<div class="ui container second-main">
+      <div class="ui two column grid">
+        <div class="middle aligned column">
+          {{> searchPart matchInfo=toSearch}}
+        </div>
+        <div class="column">
+          {{#if matchInfo}}
+            {{>basicInfoTable matchInfo=matchInfo}}
+          {{/if}}
+        </div>
+      </div>
+      <form class="ui form submit-id">
+        {{#if matchInfo}}
+          {{> matchPart players=players}}
+        {{/if}}
+      </form>
+    </div>-->
+  </div>
 </template>
