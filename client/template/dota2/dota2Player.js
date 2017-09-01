@@ -1,7 +1,7 @@
-Template.dotaTwoPlayers.onCreated(function() {
+Template.dotaTwoPlayer.onCreated(function() {
 
 });
 
-Template.dotaTwoPlayers.helpers({
+Template.dotaTwoPlayer.helpers({
 
 });
