@@ -2,10 +2,10 @@
 Router.route('/dota2',{
   name: 'dotaTwo'
 });
-/*
-Router.route('/dota2/match/:_id',{
+
+Router.route('/dota2/matches/:_id',{
   name: 'dotaTwoMatch'
 });
-Router.route('/dota2/user/:_id',{
-  name: 'dotaTwoUser'
-});*/
+Router.route('/dota2/players/:_id',{
+  name: 'dotaTwoPlayer'
+});

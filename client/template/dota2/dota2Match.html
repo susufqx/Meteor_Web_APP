@@ -1,0 +1,131 @@
+<template name="dotaTwoMatch">
+  <div class="main dotaTwoMatch-part">
+    <div class="header segment">
+      <div class="ui container">
+        <div class="ui huge header">
+          <h2><a>Dota 2</a> <b>Match&nbsp;Informations</b></h2>
+        </div>
+      </div>
+    </div>
+    <div class="ui container second-main">
+      <div class="ui two column grid">
+        <div class="middle aligned column">
+          {{> searchPart matchInfo=toSearch}}
+        </div>
+        <div class="column">
+          {{#if matchInfo}}
+            {{>basicInfoTable matchInfo=matchInfo}}
+          {{/if}}
+        </div>
+      </div>
+      <form class="ui form submit-id">
+        {{#if matchInfo}}
+          {{> matchPart players=players}}
+        {{/if}}
+      </form>
+    </div>
+  </div>
+</template>
+
+<template name="basicInfoTable">
+  <table class="ui collapsing compact inverted table">
+    <thead>
+      <tr class='center aligned'>
+        <th>Match ID</th>
+        <th>Start Time</th>
+        <th>Duration</th>
+        <th>First Blood Time</th>
+        <th>Game Mode</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class='center aligned'>
+        <td>{{matchInfo.match_id}}</td>
+        <td>{{matchInfo.start_time}}</td>
+        <td>{{matchInfo.duration}}</td>
+        <td>{{matchInfo.first_blood_time}}</td>
+        <td>{{matchInfo.game_mode}}</td>
+      </tr>
+    </tbody>
+  </table>
+</template>
+
+<template name="matchPart">
+  <h2 class='radiant'>
+    Radiant
+    {{#if radiant_win}}
+      (WIN THE GAME)
+    {{/if}}
+  </h2>
+  {{>tableMatch getPlayers=players.radiant}}
+  <h2 class='dire'>
+    Dire
+    {{#unless radiant_win}}
+      (WIN THE GAME)
+    {{/unless}}
+  </h2>
+  {{>tableMatch getPlayers=players.dire}}
+</template>
+
+<template name='tableMatch'>
+  <table class="ui striped inverted black mini compact table">
+    <thead>
+      <tr class='center aligned'>
+        <th></th>
+        <th class="three wide">Players</th>
+        <th>Heros</th>
+        <th>KDA</th>
+        <th>K/D/A</th>
+        <th>DAMAGE</th>
+        <th>LH/DN</th>
+        <th>XPM</th>
+        <th>GPM</th>
+        <th>TD</th> <!-- TowerDamage -->
+        <th>HH</th> <!-- HeroHealing -->
+        <th>Items</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each player in getPlayers}}
+      <tr class='center aligned'>
+        <td><a></a><img src='{{player.playerInfo.avatar}}'></td>
+        <td>{{player.playerInfo.personaname}}</td>
+        <td class="left aligned">
+          <a>
+            <img class="ui middle aligned image" src="{{player.heroImage}}">
+            {{player.level}}
+          </a>
+        </td>
+        <td>
+          <a class="kda_number">
+            {{player.KDA}}
+          </a>
+        </td>
+        <td>
+          {{player.kills}}/{{player.deaths}}/{{player.assists}}
+        </td>
+        <td>{{player.hero_damage}}</td>
+        <td>{{player.last_hits}}/{{player.denies}}</td>
+        <td>{{player.xp_per_min}}</td>
+        <td>{{player.gold_per_min}}</td>
+        <td>{{player.tower_damage}}</td>
+        <td>{{player.hero_healing}}</td>
+        <td class="left middle aligned">
+          <div class="ui mini images left aligned {{#if player.itemsImage.pack.[0]}}top-images{{/if}}">
+            {{#each image in player.itemsImage.items}}
+              <a><img src="{{image}}"></a>
+            {{/each}}
+          </div>
+          {{#if player.itemsImage.pack.[0]}}
+          <div class="ui mini images left aligned bottom-images">
+            {{#each pack in player.itemsImage.pack}}
+              <a><img src="{{pack}}"></a>
+            {{/each}}
+          </div>
+          {{/if}}
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</template>

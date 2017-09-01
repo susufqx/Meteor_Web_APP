@@ -10,8 +10,8 @@ Template.header.helpers({
   },
 
   'isDota': ()=> {
-    let pathName = Router.current().url;
-    return (_.last(pathName.split('/')) === 'dota2')? true : false;
+    let pathName = Router.current().route.getName();
+    return ((pathName) === 'dotaTwo' || (pathName) === 'dotaTwoMatch' || (pathName) === 'dotaTwoPlayer' )? true : false;
   }
 });
 
