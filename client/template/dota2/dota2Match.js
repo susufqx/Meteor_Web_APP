@@ -28,21 +28,6 @@ function deleteNull(array) {
   }
   return newArray;
 }
-/*
-Template.dotaTwoMatch.events({
-  'submit .submit-id'(evt, template){
-    evt.preventDefault();
-    let dota_id = evt.target.dota2_id.value;
-    let path_kind;
-    let type = $('.dota2-type').text();
-
-    switch (type) {
-      case 'By Account ID'  : Router.go('dotaTwoPlayer',  {_id: dota_id});    break;
-      case 'By Match ID'    : Router.go('dotaTwoMatch',   {_id: dota_id});    break;
-      default : alert('Choose type and enter the dota2 id please!');
-    }
-  }
-});*/
 
 Template.dotaTwoMatch.helpers({
   'accountInfo' : () => Template.instance().getAccountInfo.get(),
@@ -61,7 +46,7 @@ Template.dotaTwoMatch.helpers({
     let front_img  = 'http://cdn.dota2.com/steamcommunity/public/images/avatars/';
     let noInfo_add = {personaname:'UNKNOWN PLAYER', avatar:'/images/items/unknown_player.jpg'};
     if(matchInfo){
-      //console.log(matchInfo);
+      console.log(matchInfo);
       newPlayers  =   {radiant:[], dire:[]};
       players     =   matchInfo.players;
       len         =   players.length;
