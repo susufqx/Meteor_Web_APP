@@ -12,15 +12,17 @@
     </div>
     <div class="ui container second-main">
       <div class="ui center aligned grid">
-        <h2>Latest Matches</h2>
+        <h2>List of Matches</h2>
         <table class="ui striped inverted black mini compact table">
           <thead>
             <tr class="center aligned">
               <th class="left aligned">Hero</th>
               <th>Match Id</th>
+              <th>Game Mode</th>
               <th>Match Date</th>
               <th>Result</th>
               <th>KDA(K/D/A)</th>
+              <th>Items</th>
             </tr>
           </thead>
           <tbody>
@@ -30,9 +32,11 @@
                   <a class="ui middle aligned image"><img src="{{match.hero_image}}">&nbsp;{{match.hero_name}}</a>
                 </td>
                 <td class="">{{match.match_id}}</td>
+                <td>todo...</td>
                 <td>{{match.start_time}}</td>
-                <td></td>
-                <td></td>
+                <td>todo...</td>
+                <td>todo...</td>
+                <td>todo...</td>
               </tr>
             {{/each}}
           </tbody>
