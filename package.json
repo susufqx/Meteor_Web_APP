@@ -12,7 +12,7 @@
     "meteor-node-stubs": "^0.2.11",
     "mongoose": "~4.4.20",
     "npm": "^5.4.0",
-    "susu-dota2-api": "^1.0.5"
+    "susu-dota2-api": "^1.0.6"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.7"

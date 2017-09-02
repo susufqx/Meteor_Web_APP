@@ -3,29 +3,41 @@
     <div class="header segment">
       <div class="ui container">
         <div class="ui center aligned huge header">
-          <a class="ui center aligned image">
-            <img src="{{playerInfo.avatarfull}}"><br>
-            {{playerInfo.personaname}}
+          <a class="ui circular tiny image">
+            <img src="{{playerInfo.avatarfull}}">
           </a>
+          <h3>{{playerInfo.personaname}}</h3>
         </div>
       </div>
     </div>
-    <!--<div class="ui container second-main">
-      <div class="ui two column grid">
-        <div class="middle aligned column">
-          {{> searchPart matchInfo=toSearch}}
-        </div>
-        <div class="column">
-          {{#if matchInfo}}
-            {{>basicInfoTable matchInfo=matchInfo}}
-          {{/if}}
-        </div>
+    <div class="ui container second-main">
+      <div class="ui center aligned grid">
+        <h2>Latest Matches</h2>
+        <table class="ui striped inverted black mini compact table">
+          <thead>
+            <tr class="center aligned">
+              <th class="left aligned">Hero</th>
+              <th>Match Id</th>
+              <th>Match Date</th>
+              <th>Result</th>
+              <th>KDA(K/D/A)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each match in matchHistory}}
+              <tr class="center aligned match-button" id="{{match.match_id}}">
+                <td class="three wide left aligned">
+                  <a class="ui middle aligned image"><img src="{{match.hero_image}}">&nbsp;{{match.hero_name}}</a>
+                </td>
+                <td class="">{{match.match_id}}</td>
+                <td>{{match.start_time}}</td>
+                <td></td>
+                <td></td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
       </div>
-      <form class="ui form submit-id">
-        {{#if matchInfo}}
-          {{> matchPart players=players}}
-        {{/if}}
-      </form>
-    </div>-->
+    </div>
   </div>
 </template>

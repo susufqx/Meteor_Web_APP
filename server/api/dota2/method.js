@@ -26,7 +26,19 @@ Meteor.methods({
     const options   = {
       steamids:id
     };
-    console.log(options);
     return da.getPlayerSummaries(options);
+  },
+
+  'getMatchHistory'(id){
+    check(id, String);
+    let key = Meteor.settings.private.dota2api.key;
+
+    const Dota2Api = require('susu-dota2-api');
+    const da       = Dota2Api.create(key);
+
+    const options  = {
+      account_id:id
+    };
+    return da.getMatchHistory(options);
   }
 });

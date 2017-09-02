@@ -70,7 +70,7 @@ Template.dotaTwoMatch.helpers({
 
         player.KDA        =   (Math.round((kill+assist)/death * 10) / 10).toFixed(1);
         player.heroName   =   dota2_data.getHeroName(player.hero_id);
-        player.heroImage  =   dota2_data.getHeroImage(player.hero_id);
+        player.heroImage  =   dota2_data.getHeroSmallImage(player.hero_id);
         player.itemsImage =   {items:deleteNull(getItems), pack:deleteNull(getPack)};
 
         if(key < (len/2)){
