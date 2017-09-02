@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="ui container second-main">
-      <div class="ui center aligned grid">
+      <form class="ui center aligned form">
         <h2>List of Matches</h2>
         <table class="ui striped inverted black mini compact table">
           <thead>
@@ -23,25 +23,45 @@
               <th>Result</th>
               <th>KDA(K/D/A)</th>
               <th>Items</th>
+              <th>Backpack</th>
             </tr>
           </thead>
           <tbody>
-            {{#each match in matchHistory}}
+            {{#each match in matchesInfo}}
               <tr class="center aligned match-button" id="{{match.match_id}}">
                 <td class="three wide left aligned">
                   <a class="ui middle aligned image"><img src="{{match.hero_image}}">&nbsp;{{match.hero_name}}</a>
                 </td>
                 <td class="">{{match.match_id}}</td>
-                <td>todo...</td>
+                <td>{{match.game_mode}}</td>
                 <td>{{match.start_time}}</td>
-                <td>todo...</td>
-                <td>todo...</td>
-                <td>todo...</td>
+                <td>
+                  {{#if match.result}}
+                    <a class="win-text">Win</a>
+                  {{else}}
+                    <a class="fail-text">Fail</a>
+                  {{/if}}
+                </td>
+                <td>{{match.KDA}}({{match.kills}}/{{match.deaths}}/{{match.assists}})</td>
+                <td class="left middle aligned">
+                  <div class="ui mini images left aligned">
+                    {{#each item_image in match.items.items}}
+                      <a><img src="{{item_image}}"></a>
+                    {{/each}}
+                  </div>
+                </td>
+                <td class="left middle aligned">
+                  <div class="ui mini images left aligned">
+                    {{#each pack_image in match.items.packs}}
+                      <a><img src="{{pack_image}}"></a>
+                    {{/each}}
+                  </div>
+                </td>
               </tr>
             {{/each}}
           </tbody>
         </table>
-      </div>
+      </form>
     </div>
   </div>
 </template>

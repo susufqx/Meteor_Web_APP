@@ -1,6 +1,6 @@
 import {dota2_data} from '/lib/dota2_data/dota2_method.js';
 
-function getDuration(secondTime){
+export function getDuration(secondTime){
   let second      = secondTime % 60;
   let minuteTime  = (secondTime-second)/60;
   let minute      = minuteTime % 60;
@@ -8,7 +8,7 @@ function getDuration(secondTime){
   return hour+"h"+minute+"m"+second+"s";
 }
 
-function getMode(number){
+export function getMode(number){
   let mode;
   switch (number) {
     case 22 : mode = "All Pick";        break;
@@ -19,7 +19,7 @@ function getMode(number){
   return mode;
 }
 
-function deleteNull(array) {
+export function deleteNull(array) {
   let newArray = [];
   for (let i in array) {
     if(array[i]){
@@ -51,10 +51,10 @@ Template.dotaTwoMatch.helpers({
       players     =   matchInfo.players;
       len         =   players.length;
       _.each(players, function(player, key){
-        let kill     = player.kills;
-        let assist   = player.assists;
-        let death    = (player.deaths === 0)?1:player.deaths;
-        let getItems = [
+        let kills     = player.kills;
+        let assists   = player.assists;
+        let deaths    = (player.deaths === 0)?1:player.deaths;
+        let getItems  = [
           dota2_data.getItemImage(player.item_0),
           dota2_data.getItemImage(player.item_1),
           dota2_data.getItemImage(player.item_2),
@@ -62,16 +62,16 @@ Template.dotaTwoMatch.helpers({
           dota2_data.getItemImage(player.item_4),
           dota2_data.getItemImage(player.item_5)
         ];
-        let getPack = [
+        let getPack   = [
           dota2_data.getItemImage(player.backpack_0),
           dota2_data.getItemImage(player.backpack_1),
           dota2_data.getItemImage(player.backpack_2)
         ];
 
-        player.KDA        =   (Math.round((kill+assist)/death * 10) / 10).toFixed(1);
+        player.KDA        =   (Math.round((kills+assists)/deaths * 10) / 10).toFixed(1);
         player.heroName   =   dota2_data.getHeroName(player.hero_id);
         player.heroImage  =   dota2_data.getHeroSmallImage(player.hero_id);
-        player.itemsImage =   {items:deleteNull(getItems), pack:deleteNull(getPack)};
+        player.itemsImage =   {items:deleteNull(getItems), packs:deleteNull(getPack)};
 
         if(key < (len/2)){
           newPlayers.radiant.push(player);

@@ -1,8 +1,11 @@
-import {dota2_data} from '/lib/dota2_data/dota2_method.js';
+import {dota2_data}           from '/lib/dota2_data/dota2_method.js';
+import {getMode, deleteNull}  from './dota2Match.js';
 
 Template.dotaTwoPlayer.onCreated(function() {
-  this.playerInfo   = new ReactiveVar();
-  this.matchHistory = new ReactiveVar();
+  this.playerInfo     = new ReactiveVar();
+  this.matchHistory   = new ReactiveVar();
+  this.matchesNumber  = new ReactiveVar();
+  this.matchesInfo    = new ReactiveDict();
 
   Tracker.autorun(()=> {
     let account_id    =   _.last((Router.current().url).split('/'));
@@ -41,18 +44,75 @@ Template.dotaTwoPlayer.onCreated(function() {
               historyInfo[n].hero_name  = ((dota2_data.getHeroName(historyInfo[n].hero_id)).split('_')).join(' ');
             }
             this.matchHistory.set(historyInfo);
+            this.matchesNumber.set(res.result.num_results);
           } else if(err) {
             console.log(err);
           }
         }
       );
     }
+
+    if(matchHistory) {
+      for(let i in matchHistory) {
+        Meteor.call('getMatchDota2',
+          matchHistory[i].match_id.toString(), // in the function, id must be String type
+          (err, res) => {
+            if(!err && res) {
+              let players = res.result.players;
+              for(let n in players) {
+                if(players[n].account_id.toString() === account_id) {
+                  let getItems  = [
+                    dota2_data.getItemImage(players[n].item_0),
+                    dota2_data.getItemImage(players[n].item_1),
+                    dota2_data.getItemImage(players[n].item_2),
+                    dota2_data.getItemImage(players[n].item_3),
+                    dota2_data.getItemImage(players[n].item_4),
+                    dota2_data.getItemImage(players[n].item_5)
+                  ];
+                  let getPack   = [
+                    dota2_data.getItemImage(players[n].backpack_0),
+                    dota2_data.getItemImage(players[n].backpack_1),
+                    dota2_data.getItemImage(players[n].backpack_2)
+                  ];
+
+                  matchHistory[i].kills       = players[n].kills;
+                  matchHistory[i].deaths      = players[n].deaths;
+                  matchHistory[i].assists     = players[n].assists;
+                  matchHistory[i].KDA         = (Math.round((players[n].kills + players[n].assists) / players[n].deaths * 10) / 10).toFixed(1);
+                  matchHistory[i].playerPart  = (players[n].player_slot < 4) ? true : false;
+                  matchHistory[i].items       = {items:deleteNull(getItems), packs:deleteNull(getPack)};
+
+                  break;
+                }
+              }
+
+              matchHistory[i].result    = (matchHistory[i].playerPart === res.result.radiant_win) ? true : false;
+              matchHistory[i].game_mode = getMode(res.result.game_mode);
+              console.log(matchHistory[i]);
+              this.matchesInfo.set(i.toString(), matchHistory[i]);
+            } else if(err) {
+              console.log(err);
+            }
+          }
+        );
+      }
+    }
   });
 });
 
 Template.dotaTwoPlayer.helpers({
   'playerInfo'     : () => Template.instance().playerInfo.get(),
-  'matchHistory'   : () => Template.instance().matchHistory.get()
+  'matchHistory'   : () => Template.instance().matchHistory.get(),
+  'matchesInfo'    : () => {
+    let num = Template.instance().matchesNumber.get();
+    let matches = [];
+    for (let i=0;i<num;i++) {
+      let add = Template.instance().matchesInfo.get(i.toString());
+      matches.push(add);
+    }
+    console.log(matches);
+    return matches;
+  }
 });
 
 Template.dotaTwoPlayer.events({

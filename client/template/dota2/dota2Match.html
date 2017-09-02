@@ -112,14 +112,14 @@
         <td>{{player.hero_healing}}</td>
         <td class="left middle aligned">
           <div class="ui mini images left aligned {{#if player.itemsImage.pack.[0]}}top-images{{/if}}">
-            {{#each image in player.itemsImage.items}}
-              <a><img src="{{image}}"></a>
+            {{#each item_image in player.itemsImage.items}}
+              <a><img src="{{item_image}}"></a>
             {{/each}}
           </div>
-          {{#if player.itemsImage.pack.[0]}}
+          {{#if player.itemsImage.packs.[0]}}
           <div class="ui mini images left aligned bottom-images">
-            {{#each pack in player.itemsImage.pack}}
-              <a><img src="{{pack}}"></a>
+            {{#each pack_image in player.itemsImage.packs}}
+              <a><img src="{{pack_image}}"></a>
             {{/each}}
           </div>
           {{/if}}
