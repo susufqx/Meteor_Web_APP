@@ -2,6 +2,7 @@ Template.blog.onCreated(function(){
   Meteor.subscribe('blogs');
   this.blogs = new ReactiveVar();
   this.write = new ReactiveVar(false);
+  document.title = 'Blog-SusuFQX';
   /*this.label = new ReactiveDict();
 
   this.label.set();*/

@@ -13,6 +13,7 @@ Template.blogId.onCreated(function() {
     if(blog){
       blog.date = moment(blog.date).format('LL');
       this.blog.set(blog);
+      document.title = blog.title + '-SusuFQX';
     }
   });
 });

@@ -1,5 +1,17 @@
 import {dota2_data}           from '/lib/dota2_data/dota2_method.js';
 import {getMode, deleteNull}  from './dota2Match.js';
+/*
+Template.dotaTwoPlayerMain.onRendered(function() {
+  console.log(Template.currentData());
+  console.log();
+  Tracker.autorun(() => {
+    let playerInfo = Template.instance().playerInfo.get();
+    if(playerInfo) {
+      console.log(playerInfo.personaname);
+
+    }
+  });
+});*/
 
 Template.dotaTwoPlayerMain.events({
   'click .match-button' (evt, template){
@@ -52,6 +64,14 @@ Template.dotaTwoPlayerMain.onCreated(function() {
           }
         }
       );
+    }
+
+    if(playerInfo) {
+      let playerName = playerInfo.personaname;
+      let pathName   = Router.current().route.getName();
+      if (pathName === 'dotaTwoPlayerSummaries' || pathName === 'dotaTwoPlayerMatchHistory'){
+        document.title  =  playerName + '-SusuFQX';
+      }
     }
 
     if(!matchHistory) {

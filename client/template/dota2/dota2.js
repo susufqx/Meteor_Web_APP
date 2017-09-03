@@ -10,7 +10,7 @@ Template.searchPart.events ({
         /*if(template.data) {
           template.data.playerInfo.set();
         }*/
-        Router.go('dotaTwoPlayer',  {_id: dota_id});
+        Router.go('dotaTwoPlayerSummaries',  {_id: dota_id});
       break;
       case 'By Match ID'    :
         if(template.data) {
@@ -25,4 +25,8 @@ Template.searchPart.events ({
 
 Template.searchPart.onRendered(function() {
   this.$('.js-dota2-type-dropdown').dropdown();
+});
+
+Template.dotaTwo.onRendered(function() {
+  document.title = 'Dota2-SusuFQX';
 });

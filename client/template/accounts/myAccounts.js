@@ -7,9 +7,20 @@ Template.myAccounts.helpers({
 
 Template.myAccounts.onCreated(function() {
   let state       = Template.currentData().state;
+  let pathName    = Router.curren().route.getName();
+
   this.login      = new ReactiveVar((state==='signIn'));
   this.register   = new ReactiveVar((state==='signUp'));
   this.forgetPwd  = new ReactiveVar((state==='forgetPwd'));
+
+  switch (pathName) {
+    case 'login':
+      document.title = 'Login-SusuFQX';
+    break;
+    case 'register':
+      document.title = 'Register-SusuFQX';
+    break;
+  }
 });
 
 Template.myAccounts.events({

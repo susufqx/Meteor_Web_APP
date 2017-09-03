@@ -100,10 +100,11 @@ Template.dotaTwoMatch.onCreated(function() {
     '0':{},'1':{},'2':{},'3':{},'4':{},
     '5':{},'6':{},'7':{},'8':{},'9':{}
   });
+  let match_id  = _.last((Router.current().url).split('/'));
+  document.title = 'Match:' + match_id + '-SusuFQX';
 
   Tracker.autorun(()=> {
     let matchInfo = this.getMatchInfo.get();
-    let match_id  = _.last((Router.current().url).split('/'));
 
     if(!matchInfo) {
       Meteor.call('getMatchDota2',
