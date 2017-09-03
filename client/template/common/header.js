@@ -11,7 +11,11 @@ Template.header.helpers({
 
   'isDota': ()=> {
     let pathName = Router.current().route.getName();
-    return ((pathName) === 'dotaTwo' || (pathName) === 'dotaTwoMatch' || (pathName) === 'dotaTwoPlayer' )? true : false;
+    return ((pathName) === 'dotaTwo' ||
+            (pathName) === 'dotaTwoMatch' ||
+            (pathName) === 'dotaTwoPlayer' ||
+            (pathName) === 'dotaTwoPlayerSummaries' ||
+            (pathName) === 'dotaTwoPlayerMatchHistory')? true : false;
   }
 });
 

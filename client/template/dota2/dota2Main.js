@@ -1,7 +1,36 @@
-/*import {dota2_data}           from '/lib/dota2_data/dota2_method.js';
+import {dota2_data}           from '/lib/dota2_data/dota2_method.js';
 import {getMode, deleteNull}  from './dota2Match.js';
 
-Template.dotaTwoPlayer.onCreated(function() {
+Template.dotaTwoPlayerMain.events({
+  'click .match-button' (evt, template){
+    let id = evt.currentTarget.id;
+    Router.go('dotaTwoMatch', {_id: id});
+  }
+});
+
+Template.dotaTwoPlayerMain.helpers({
+  'playerInfo'        : () => Template.instance().playerInfo.get(),
+  'matchHistory'      : () => Template.instance().matchHistory.get(),
+  'matchesInfo'       : () => {
+    let num = Template.instance().matchesNumber.get();
+    let matches = [];
+    for (let i=0;i<num;i++) {
+      let add = Template.instance().matchesInfo.get(i.toString());
+      matches.push(add);
+    }
+    return matches;
+  },
+  'matchesRecentInfo' : () => {
+    let matches = [];
+    for (let i=0;i<10;i++) {
+      let add = Template.instance().matchesInfo.get(i.toString());
+      matches.push(add);
+    }
+    return matches;
+  }
+});
+
+Template.dotaTwoPlayerMain.onCreated(function() {
   this.playerInfo     = new ReactiveVar();
   this.matchHistory   = new ReactiveVar();
   this.matchesNumber  = new ReactiveVar();
@@ -88,7 +117,6 @@ Template.dotaTwoPlayer.onCreated(function() {
 
               matchHistory[i].result    = (matchHistory[i].playerPart === res.result.radiant_win) ? true : false;
               matchHistory[i].game_mode = getMode(res.result.game_mode);
-              console.log(matchHistory[i]);
               this.matchesInfo.set(i.toString(), matchHistory[i]);
             } else if(err) {
               console.log(err);
@@ -98,32 +126,4 @@ Template.dotaTwoPlayer.onCreated(function() {
       }
     }
   });
-});
-
-Template.dotaTwoPlayer.helpers({
-  'playerInfo'     : () => Template.instance().playerInfo.get(),
-  'matchHistory'   : () => Template.instance().matchHistory.get(),
-  'matchesInfo'    : () => {
-    let num = Template.instance().matchesNumber.get();
-    let matches = [];
-    for (let i=0;i<num;i++) {
-      let add = Template.instance().matchesInfo.get(i.toString());
-      matches.push(add);
-    }
-    console.log(matches);
-    return matches;
-  }
-});
-
-Template.dotaTwoPlayer.events({
-  'click .match-button' (evt, template){
-    let id = evt.currentTarget.id;
-    console.log(id);
-    Router.go('dotaTwoMatch', {_id: id});
-  }
-});
-*/
-Template.dotaTwoPlayerMatchHistory.helpers({
-  'isMatchHistory'    : true,
-  'isPlayerSummaries' : false
 });
