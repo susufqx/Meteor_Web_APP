@@ -7,7 +7,7 @@ Template.myAccounts.helpers({
 
 Template.myAccounts.onCreated(function() {
   let state       = Template.currentData().state;
-  let pathName    = Router.curren().route.getName();
+  let pathName    = Router.current().route.getName();
 
   this.login      = new ReactiveVar((state==='signIn'));
   this.register   = new ReactiveVar((state==='signUp'));
