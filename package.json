@@ -5,6 +5,8 @@
     "start": "meteor run"
   },
   "dependencies": {
+    "angular-meteor": "^1.3.12",
+    "angular4": "^1.0.0",
     "babel-runtime": "^6.26.0",
     "bcrypt": "^0.8.7",
     "hero.js": "^1.0.0",
