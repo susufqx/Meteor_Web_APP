@@ -12,7 +12,7 @@ const schema = new SimpleSchema ({
   agree   : { type: Boolean,  optional: true}
 });
 
-user.attachSchema(
+(<any>user).attachSchema(
   new SimpleSchema({
     profile: { type: schema },
   })

@@ -1,8 +1,10 @@
 /* here, we defined the blogs of SusuFQX */
+import { Meteor } from 'meteor/meteor';
+import { Mongo } from 'meteor/mongo';
 
 const blogs =  new Mongo.Collection('blogs');
 
-blogs.attachSchema(
+(<any>blogs).attachSchema(
   new SimpleSchema({
     userID   : { type: String},
     title    : { type: String},

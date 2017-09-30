@@ -1,6 +1,6 @@
 const user = Meteor.users;
 
-user.attachSchema(
+(<any>user).attachSchema(
     new SimpleSchema({
       username: {
           type: String,
@@ -43,7 +43,7 @@ function getImage()
   return (this.profile.photo? this.profile.photo:"/images/index/defaultPhoto.jpg");
 }
 
-user.helpers({
+(<any>user).helpers({
   'getImage':   getImage,
 });
 

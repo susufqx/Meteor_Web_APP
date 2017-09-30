@@ -1,6 +1,10 @@
-import image from '/universal/collections/image.js';
-import blogs from '/universal/collections/blog.js';
+import 'zone.js';
+import 'reflect-metadata';
 
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { Meteor } from 'meteor/meteor';
+import { AppModule } from './app.module';
 
-Meteor.image = image;
-Meteor.blogs = blogs;
+Meteor.startup(() => {
+  platformBrowserDynamic().bootstrapModule(AppModule);
+});

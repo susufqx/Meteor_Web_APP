@@ -24,13 +24,17 @@
   "include": [
     "client/**/*.ts",
     "server/**/*.ts",
-    "imports/**/*.ts"
+    "universal/**/*.ts"
   ],
   "exclude": [
+    ".meteor",
     "node_modules"
   ],
   "compileOnSave": false,
   "atom": {
     "rewriteTsconfig": false
-  }
+  },
+  "files":[
+    "typings/index.d.ts"
+  ]
 }

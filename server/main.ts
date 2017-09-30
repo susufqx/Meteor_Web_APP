@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
-import setupBrowserPolicy from './config/security.js';
-import accountCreationHook from './config/user.js';
+import setupBrowserPolicy from './config/security';
+import accountCreationHook from './config/user';
 
 import publishUsers    from './publications/user.js';
 import publishBlogs    from './publications/blog.js';

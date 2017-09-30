@@ -1,3 +1,5 @@
+import { FileCollection } from 'vsivsi:file-collection';
+
 const image = new FileCollection('image',{
   resumable: true,
   resumableIndexName: 'image',
